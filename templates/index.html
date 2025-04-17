@@ -3,49 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>Simple Text Reader</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .content-container {
+            height: calc(100vh - 12rem);
+            min-height: 300px;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 p-8">
-    <h1 class="text-3xl font-bold mb-4">1</h1>
-    <h1 class="text-3xl font-bold mb-4">2</h1>
-    <h1 class="text-3xl font-bold mb-4">3</h1>
-    <form method="POST" action="/">
-        <!-- 新增显示模式区域 -->
-        <div 
-            id="displayContent" 
-            class="w-full h-[90vh] p-4 rounded shadow bg-white mb-4"
-            style="white-space: pre-wrap; border: 1px solid #ddd;"
-        >
-            {{ content }}
-        </div>
+<body class="bg-gray-100 p-4 md:p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold mb-6 text-gray-800">Simple Text Reader</h1>
+        <form method="POST" action="/" class="flex flex-col h-full">
+            <div 
+                id="displayContent" 
+                class="content-container w-full p-4 rounded shadow bg-white mb-4 overflow-auto"
+                style="white-space: pre-wrap; border: 1px solid #ddd;"
+            >{{- content -}}</div>
 
-        <!-- 新增编辑模式区域（初始隐藏） -->
-        <textarea 
-            id="editContent" 
-            name="new_content" 
-            class="w-full h-[90vh] p-4 rounded shadow bg-white mb-4 hidden"
-            rows="20"
-        >{{ content }}</textarea>
+            <textarea 
+                id="editContent" 
+                name="new_content" 
+                class="content-container w-full p-4 rounded shadow bg-white mb-4 hidden resize-none"
+                style="white-space: pre-wrap;"
+            >{{- content -}}</textarea>
 
-        <!-- 新增编辑按钮 -->
-        <button 
-            type="button" 
-            onclick="toggleEditMode()"
-            class="bg-blue-300 text-blue-800 px-4 py-2 rounded mr-2 mt-4 hover:bg-blue-400"
-        >
-            开始编辑
-        </button>
+            <div class="flex gap-4">
+                <button 
+                    type="button" 
+                    onclick="toggleEditMode()"
+                    class="bg-blue-300 text-blue-800 px-4 py-2 rounded hover:bg-blue-400 transition-colors"
+                >
+                    Toggle Edit Mode
+                </button>
 
-        <button 
-            type="submit" 
-            class="bg-blue-500 text-white px-4 py-2 rounded mt-4"
-        >
-            保存修改
-        </button>
-    </form>
+                <button 
+                    type="submit" 
+                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+                >
+                    Save Changes
+                </button>
+            </div>
+        </form>
+    </div>
 
-    <!-- 新增切换模式的JavaScript -->
     <script>
     function toggleEditMode() {
         const display = document.getElementById('displayContent');
