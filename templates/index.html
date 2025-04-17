@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-8">
+    <h1 class="text-3xl font-bold mb-4">1</h1>
+    <h1 class="text-3xl font-bold mb-4">2</h1>
+    <h1 class="text-3xl font-bold mb-4">3</h1>
+    <form method="POST" action="/">
+        <!-- 新增显示模式区域 -->
+        <div 
+            id="displayContent" 
+            class="w-full h-[90vh] p-4 rounded shadow bg-white mb-4"
+            style="white-space: pre-wrap; border: 1px solid #ddd;"
+        >
+            {{ content }}
+        </div>
+
+        <!-- 新增编辑模式区域（初始隐藏） -->
+        <textarea 
+            id="editContent" 
+            name="new_content" 
+            class="w-full h-[90vh] p-4 rounded shadow bg-white mb-4 hidden"
+            rows="20"
+        >{{ content }}</textarea>
+
+        <!-- 新增编辑按钮 -->
+        <button 
+            type="button" 
+            onclick="toggleEditMode()"
+            class="bg-blue-300 text-blue-800 px-4 py-2 rounded mr-2 mt-4 hover:bg-blue-400"
+        >
+            开始编辑
+        </button>
+
+        <button 
+            type="submit" 
+            class="bg-blue-500 text-white px-4 py-2 rounded mt-4"
+        >
+            保存修改
+        </button>
+    </form>
+
+    <!-- 新增切换模式的JavaScript -->
+    <script>
+    function toggleEditMode() {
+        const display = document.getElementById('displayContent');
+        const editor = document.getElementById('editContent');
+        display.classList.toggle('hidden');
+        editor.classList.toggle('hidden');
+    }
+    </script>
+</body>
+</html>
