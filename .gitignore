@@ -7,6 +7,10 @@ __pycache__/
 venv/
 env/
 
+# pyinstaller
+dist/
+build/
+
 # Flask instance folder
 instance/
 
